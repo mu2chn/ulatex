@@ -1,4 +1,16 @@
+## latexkの設定
+`.latexmkrc`をコンパイル対象のあるディレクトリに配置して下さい
+
+```
+#!/usr/bin/perl
+
+$latex     = 'platex -halt-on-error -interaction=nonstopmode %O %S';
+$dvipdf    = 'dvipdfmx %O -o %D %S';
+$pdf_mode  = '3'; # .tex -> .dvi -> .pdf
+```
+
 ## latex-workshopとの統合
+
 `settings.json`に以下を追記
 ```
 {
