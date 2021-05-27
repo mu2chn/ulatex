@@ -23,6 +23,7 @@ RUN \
         echo 'latexmk -pvc $1';\
     } > /usr/local/bin/buildtex && chmod 700 /usr/local/bin/buildtex \
     # スライドのテーマ (https://github.com/matze/mtheme)
+    # *.styは/usr/share/texmf/tex/latexに投げ込んでおけば勝手に認識される
     && curl -sLO https://github.com/matze/mtheme/archive/master.tar.gz \
     && tar -zxvf master.tar.gz \
     && cd mtheme-master \
