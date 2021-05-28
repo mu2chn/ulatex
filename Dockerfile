@@ -6,7 +6,7 @@ RUN \
     && apt-get install -y --no-install-recommends \
         # apt-get中にTZ聞かれないように
         tzdata \ 
-        curl make \
+        curl make wget nano unzip \
     && apt-get install -y --no-install-recommends \
         texlive-lang-japanese \
         texlive-latex-extra \
@@ -31,7 +31,8 @@ RUN \
     && mv *.sty /usr/share/texmf/tex/latex/ \
     && cd .. \
     && rm -rf mtheme-master && rm master.tar.gz
-
+    # フォントのインストール
+    # フォントファイルは kpsewhich -show-path="truetype fonts" で示されるパスにおいておけばOK
 ADD ./.latexmkrc /root/.latexmkrc
 
 WORKDIR /tex
