@@ -39,8 +39,4 @@ RUN tlmgr install \
         # collection-latexextra \
         latexmk
 
-RUN tlmgr install \
-    pxjahyper setspace beamer xkeyval \
-    beamertheme-metropolis pgfopts
-
 ADD ./.latexmkrc /root/.latexmkrc
