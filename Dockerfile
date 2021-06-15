@@ -29,8 +29,8 @@ RUN \
     && rm -rf * 
 
 ENV PATH $PATH:/usr/local/texlive/${LTX_VERSION}/bin/x86_64-linux
-# ENV MANPATH $MANPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/man
-# ENV INFOPATH $INFOPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/info
+ENV MANPATH $MANPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/man
+ENV INFOPATH $INFOPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/info
 
 RUN tlmgr install \
         collection-fontsrecommended \
