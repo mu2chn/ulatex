@@ -9,6 +9,8 @@ ARG LTX_VERSION="2021"
 
 WORKDIR /tex
 
+ADD ./texlive.profile ./texlive.profile
+
 RUN \
     apt-get update -y \
     # apt-get中のTZ選択を避ける
