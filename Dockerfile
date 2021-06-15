@@ -21,7 +21,7 @@ RUN \
         && locale-gen \
     && apt-get install -y --no-install-recommends \
         curl perl wget \
-    && curl -L -O ftp://tug.org/historic/systems/texlive/${LTX_VERSION}/install-tl-unx.tar.gz \
+    && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
         && ./install-tl-${LTX_VERSION}*/install-tl --profile texlive.profile \
     && apt-get clean \
@@ -29,8 +29,8 @@ RUN \
     && rm -rf * 
 
 ENV PATH $PATH:/usr/local/texlive/${LTX_VERSION}/bin/x86_64-linux
-ENV MANPATH $MANPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/man
-ENV INFOPATH $INFOPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/info
+# ENV MANPATH $MANPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/man
+# ENV INFOPATH $INFOPATH:/usr/local/texlive/${LTX_VERSION}/texmf-dist/doc/info
 
 RUN tlmgr install \
         collection-fontsrecommended \
