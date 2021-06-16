@@ -3,8 +3,7 @@ FROM ubuntu:focal-20210416
 # texlive-jaインストールガイド
 # https://www.tug.org/texlive/doc/texlive-ja/texlive-ja.pdf
 
-# texlive.profileは./install-tlで生成できる
-# 20XXはtexlive.profileに合わせること
+# texlive.profileは./install-tlで生成することも可能
 ARG LTX_VERSION="2021"
 
 WORKDIR /tex
@@ -23,6 +22,8 @@ RUN \
         curl perl wget \
     && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
+        # texlive.profileの年度を修正
+        && sed -i -E 's/20[0-9]{2}/${LTX_VERSION}/g' texlive.profile \
         && ./install-tl-${LTX_VERSION}*/install-tl --profile texlive.profile \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
