@@ -23,7 +23,8 @@ RUN \
     && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
         # texlive.profileの年度を修正
-        && sed -i -E 's/20[0-9]{2}/${LTX_VERSION}/g' texlive.profile \
+        && sed -i -E "s/20[0-9]{2}/${LTX_VERSION}/g" texlive.profile \
+        && cat texlive.profile \
         && ./install-tl-${LTX_VERSION}*/install-tl --profile texlive.profile \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
