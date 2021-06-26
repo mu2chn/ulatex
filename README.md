@@ -3,10 +3,10 @@ ubuntuベースのtexliveイメージ
 ## build
 以下の変数が定義されています。必要に応じてオーバーライドして下さい。
 
-|variable|default|description|
+|variable|description|
 |:--|:--|:--|
-|LTX_VERSION|2021|TeX Liveのバージョン|
-|LTX_PROFILE|basic|インストールプロファイル名|
+|LTX_VERSION|TeX Liveのバージョン|
+|LTX_PROFILE|インストールプロファイル名|
 
 ## latexk
 コンパイルを自動で行うlatexmkがインストールされます。

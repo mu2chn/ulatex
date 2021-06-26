@@ -5,7 +5,7 @@ FROM ubuntu:focal-20210416
 
 # texlive.profileは./install-tlで生成することも可能
 ARG LTX_VERSION="2021"
-ARG LTX_PROFILE="basic"
+ARG LTX_PROFILE="full"
 
 WORKDIR /tex
 
