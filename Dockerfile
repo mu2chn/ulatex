@@ -23,8 +23,9 @@ RUN \
         curl perl wget \
     && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
-        # texlive.profileの年度を修正
+        # fix year of texlive.profile
         && sed -i -E "s/20[0-9]{2}/${LTX_VERSION}/g" texlive.profile \
+        # test downloaded version
         && test `cat ./install-tl-*/release-texlive.txt | head -n1  | sed -E 's/^.*version (20[0-9]{2})$/\1/'` -eq ${LTX_VERSION} \
         && ./install-tl-*/install-tl --profile texlive.profile \
     && apt-get clean \
