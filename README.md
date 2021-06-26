@@ -4,7 +4,7 @@ ubuntuベースのtexliveイメージ
 以下の変数が定義されています。必要に応じてオーバーライドして下さい。
 
 |variable|description|
-|:--|:--|:--|
+|:--|:--|
 |LTX_VERSION|TeX Liveのバージョン|
 |LTX_PROFILE|インストールプロファイル名|
 
