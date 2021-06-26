@@ -25,8 +25,8 @@ RUN \
         && tar xzf install-tl-unx.tar.gz \
         # texlive.profileの年度を修正
         && sed -i -E "s/20[0-9]{2}/${LTX_VERSION}/g" texlive.profile \
-        && test `cat release-texlive.txt | head -n1  | sed -E 's/^.*version (20[0-9]{2})$/\1/'` -eq ${LTX_VERSION} \
-        && ./install-tl-${LTX_VERSION}*/install-tl --profile texlive.profile \
+        && test `cat ./install-tl-*/release-texlive.txt | head -n1  | sed -E 's/^.*version (20[0-9]{2})$/\1/'` -eq ${LTX_VERSION} \
+        && ./install-tl-*/install-tl --profile texlive.profile \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf * 
