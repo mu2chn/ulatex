@@ -5,10 +5,11 @@ FROM ubuntu:focal-20210416
 
 # texlive.profileは./install-tlで生成することも可能
 ARG LTX_VERSION="2021"
+ARG LTX_PROFILE="basic"
 
 WORKDIR /tex
 
-ADD ./texlive.profile ./texlive.profile
+ADD profiles/${LTX_PROFILE}.profile ./texlive.profile 
 
 RUN \
     apt-get update -y \

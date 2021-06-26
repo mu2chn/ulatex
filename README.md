@@ -1,5 +1,16 @@
-## latexkの設定
-`.latexmkrc`をコンパイル対象のあるディレクトリに配置して下さい
+ubuntuベースのtexliveイメージ
+
+## build
+以下の変数が定義されています。必要に応じてオーバーライドして下さい。
+
+|variable|default|description|
+|:--|:--|:--|
+|LTX_VERSION|2021|TeX Liveのバージョン|
+|LTX_PROFILE|basic|インストールプロファイル名|
+
+## latexk
+コンパイルを自動で行うlatexmkがインストールされます。
+以下は`platex`+`dvipdfmx`を使用した場合の `.latexmkrc`の一例です。
 
 ```
 #!/usr/bin/perl
@@ -16,9 +27,8 @@ $pdf_mode  = '3'; # .tex -> .dvi -> .pdf
 $pdf_previewer = ''
 ```
 
-## latex-workshopとの統合
+vscodeのlatex-workshopで使用するには`.vscode/settings.json`に以下を追記して下さい。
 
-`settings.json`に以下を追記
 ```
 {
     "latex-workshop.docker.enabled": true,
