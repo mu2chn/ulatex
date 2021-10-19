@@ -44,3 +44,22 @@ RUN tlmgr install \
         collection-langcjk \
         collection-langjapanese \
         latexmk
+
+# create and change user
+ARG UID=1000
+ARG GID=1000
+ARG USERNAME=user
+ARG USERHOME=/home/user
+RUN \
+    apt-get update -y && apt-get install sudo -y && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
+    groupadd ${USERNAME} -g ${GID} && \
+    useradd -u ${UID} -g ${GID} -d ${USERHOME} -m -s /bin/bash -G sudo ${USERNAME} && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    # sudo時にPATHを引き継ぐ
+    sudo sed -i '/Defaults.*secure_path.*/d' /etc/sudoers && \
+    echo 'Defaults  env_keep += "PATH"' >> /etc/sudoers
+USER ${USERNAME}
+
+ADD entrypoint.sh /entrypoint.sh
+RUN sudo chown ${USERNAME}:${USERNAME} -R /entrypoint.sh && sudo chmod 700 /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
