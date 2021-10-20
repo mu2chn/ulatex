@@ -8,6 +8,10 @@ ubuntuベースのtexliveイメージ
 |LTX_VERSION|TeX Liveのバージョン|
 |LTX_PROFILE|インストールプロファイル名|
 
+```
+$ docker build --build-arg LTX_PROFILE=basic -t ulatex --no-cache .
+```
+
 ## latexk
 コンパイルを自動で行うlatexmkがインストールされます。
 以下は`platex`+`dvipdfmx`を使用した場合の `.latexmkrc`の一例です。
