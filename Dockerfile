@@ -31,6 +31,11 @@ RUN \
         # test downloaded version
         && test `cat ./install-tl-*/release-texlive.txt | head -n1 | sed -E 's/^.*version (20[0-9]{2})$/\1/'` -eq ${LTX_VERSION} \
         && ./install-tl-*/install-tl --profile texlive.profile \
+    && tlmgr install \
+        collection-fontsrecommended \
+        collection-langcjk \
+        collection-langjapanese \
+        latexmk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf *
@@ -38,12 +43,6 @@ RUN \
 ENV PATH=$PATH:${LTX_PATH}/bin/x86_64-linux \
     MANPATH=$MANPATH:${LTX_PATH}/texmf-dist/doc/man \
     INFOPATH=$INFOPATH:${LTX_PATH}/texmf-dist/doc/info
-
-RUN tlmgr install \
-        collection-fontsrecommended \
-        collection-langcjk \
-        collection-langjapanese \
-        latexmk
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 700 /entrypoint.sh
