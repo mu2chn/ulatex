@@ -23,7 +23,7 @@ RUN \
         && echo "ja_JP.UTF-8" >> /etc/locale.gen \
         && locale-gen \
     && apt-get install -y --no-install-recommends \
-        curl perl wget \
+        curl perl wget gosu \
     && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
         # fix year of texlive.profile
@@ -45,21 +45,6 @@ RUN tlmgr install \
         collection-langjapanese \
         latexmk
 
-# create and change user
-ARG UID=1000
-ARG GID=1000
-ARG USERNAME=user
-ARG USERHOME=/home/user
-RUN \
-    apt-get update -y && apt-get install sudo -y && apt-get clean && rm -rf /var/lib/apt/lists/* && \ 
-    groupadd ${USERNAME} -g ${GID} && \
-    useradd -u ${UID} -g ${GID} -d ${USERHOME} -m -s /bin/bash -G sudo ${USERNAME} && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    # sudo時にPATHを引き継ぐ
-    sudo sed -i '/Defaults.*secure_path.*/d' /etc/sudoers && \
-    echo 'Defaults  env_keep += "PATH"' >> /etc/sudoers
-USER ${USERNAME}
-
 ADD entrypoint.sh /entrypoint.sh
-RUN sudo chown ${USERNAME}:${USERNAME} -R /entrypoint.sh && sudo chmod 700 /entrypoint.sh
+RUN chmod 700 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
