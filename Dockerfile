@@ -43,7 +43,7 @@ RUN tlmgr install \
         collection-fontsrecommended \
         collection-langcjk \
         collection-langjapanese \
-        latexmk \
+        latexmk 
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 700 /entrypoint.sh
