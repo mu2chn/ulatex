@@ -23,7 +23,7 @@ RUN \
         && echo "ja_JP.UTF-8" >> /etc/locale.gen \
         && locale-gen \
     && apt-get install -y --no-install-recommends \
-        curl perl wget gosu \
+        curl perl wget gosu sudo \
     && curl -sLO http://ftp.jaist.ac.jp/pub/CTAN/systems/texlive/tlnet/install-tl-unx.tar.gz \
         && tar xzf install-tl-unx.tar.gz \
         # fix year of texlive.profile
