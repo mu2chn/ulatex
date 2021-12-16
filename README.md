@@ -7,6 +7,8 @@ ubuntuベースのtexliveイメージ
 |:--|:--|
 |LTX_VERSION|TeX Liveのバージョン|
 |LTX_PROFILE|インストールプロファイル名|
+|USER_ID|ホストのUID|
+|GROUP_ID|ホストのGID|
 
 ```
 $ docker build --build-arg LTX_PROFILE=basic -t ulatex --no-cache .
