@@ -31,6 +31,40 @@ $pdf_mode  = '3'; # .tex -> .dvi -> .pdf
 $pdf_previewer = ''
 ```
 
+## latex-workshop in container
+`.devcontainer/devcotainer.json`
+```
+{
+    "dockerComposeFile": "./docker-compose.yml",
+    "remoteUser": "user",
+    "service": "tex",
+    "workspaceFolder": "/tex",
+    "extensions": [
+        "james-yu.latex-workshop",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}
+```
+
+`.devcontainer/docker-compose.json`
+```
+version: "3"
+services:
+  tex:
+    image: face0u0/ulatex
+    tty: true
+    volumes:
+      - ..:/tex
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+    command: >
+      bash -c "
+        bash
+      "
+```
+
+## latex-workshop on host
 vscodeのlatex-workshopで使用するには`.vscode/settings.json`に以下を追記して下さい。
 
 ```
